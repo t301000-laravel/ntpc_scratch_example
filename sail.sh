@@ -10,7 +10,7 @@ fi
 docker run --rm \
     -v "$(pwd)":/opt \
     -w /opt \
-    laravelsail/php80-composer:latest \
+    sail-php80-composer:latest \
     bash -c "composer install && cp .env.example .env && php ./artisan key:generate"
 
 CYAN='\033[0;36m'
@@ -28,5 +28,7 @@ else
     echo ""
     sudo chown -R $USER: .
     echo ""
-    echo -e "${WHITE}Thank you! We hope you build something incredible. Dive in with:${NC} ./vendor/bin/sail up"
+    echo -e "${WHITE}Thank you! We hope you build something incredible.${NC}"
+    echo -e "${WHITE}Step 1. ${NC} Edit .env"
+    echo -e "${WHITE}Step 2. ${NC} Run ./vendor/bin/sail up or ./vendor/bin/sail up -d"
 fi
