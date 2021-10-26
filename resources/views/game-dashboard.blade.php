@@ -1,0 +1,44 @@
+@php
+  use \Illuminate\Support\Str;
+@endphp
+
+@extends('layouts.app')
+
+@section('title', $group . ' 上傳結果')
+
+@section('content')
+    <div class="container">
+        <h1 class="text-center">{{ $group . ' 上傳結果' }}</h1>
+
+        <div class="mt-3 row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
+            @foreach($players as $player)
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-header text-white @if(count($player->files) > 0) bg-success @else bg-danger @endif">
+                            {{ $player->team->school_name }}
+                            <span class="d-inline-block float-end">{{ $player->username }}</span>
+                        </div>
+                        <div class="card-body">
+                            @if(count($player->files) > 0)
+                                <p class="card-title text-success fw-bold text-center">已上傳</p>
+                                <p class="card-text">
+                                    {{ Str::replaceFirst("sb3/{$group}/", '', $player->files->first()->path) }}
+                                </p>
+                            @else
+                                <p class="card-title text-danger fw-bold text-center">未上傳</p>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
+
+    </div>
+@endsection
+
+@section('script')
+    <script>
+        setTimeout(() => location.reload(), 30 * 1000)
+    </script>
+@endsection
