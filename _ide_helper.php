@@ -17069,11 +17069,11 @@
          * Checks if the server specified in the url exists.
          *
          * @param $url url to check
-         * @return \true, if the server exists; false otherwise
+         * @return \T301000\LaravelNtpcOpenid\true, if the server exists; false otherwise
          * @static 
          */ 
         public static function hostExists($url)
-        {            //Method inherited from \LightOpenID         
+        {            //Method inherited from \T301000\LaravelNtpcOpenid\LightOpenID         
                         /** @var \T301000\LaravelNtpcOpenid\NtpcOpenid $instance */
                         return $instance->hostExists($url);
         }
@@ -17086,7 +17086,7 @@
          * @static 
          */ 
         public static function discover($url)
-        {            //Method inherited from \LightOpenID         
+        {            //Method inherited from \T301000\LaravelNtpcOpenid\LightOpenID         
                         /** @var \T301000\LaravelNtpcOpenid\NtpcOpenid $instance */
                         return $instance->discover($url);
         }
@@ -17103,7 +17103,7 @@
          * @static 
          */ 
         public static function getAttributes()
-        {            //Method inherited from \LightOpenID         
+        {            //Method inherited from \T301000\LaravelNtpcOpenid\LightOpenID         
                         /** @var \T301000\LaravelNtpcOpenid\NtpcOpenid $instance */
                         return $instance->getAttributes();
         }
