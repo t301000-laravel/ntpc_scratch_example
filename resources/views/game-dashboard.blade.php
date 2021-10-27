@@ -45,7 +45,7 @@
 @section('script')
     <script>
         const pause = document.getElementById('pause-refresh');
-        const intervalSec = 5; // 頁面重整間隔秒數
+        const intervalSec = 20; // 頁面重整間隔秒數
 
         setTimeout(refresh, intervalSec * 1000);
 
