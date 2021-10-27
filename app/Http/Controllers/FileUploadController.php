@@ -58,7 +58,7 @@ class FileUploadController extends Controller
 
         $msg = [
             'type' => 'success',
-            'msg' => now() . " 檔案上傳成功。 {$path}"
+            'msg' => now() . " 檔案上傳成功。 " . Str::replaceFirst('sb3/', '', $path)
         ];
 
         return back()->with('status', $msg);
