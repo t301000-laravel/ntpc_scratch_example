@@ -16,7 +16,7 @@
             <div class="col order-1 order-md-0">
                 <div class="card h-100">
                     <div class="card-header text-center">
-                        <h4>網站管理員登入</h4>
+                        <h4>登入</h4>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('login') }}" method="post">

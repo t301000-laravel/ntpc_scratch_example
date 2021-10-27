@@ -8,7 +8,14 @@
 
 @section('content')
     <div class="container">
-        <h1 class="text-center">{{ $group . ' 上傳結果' }}</h1>
+        <h1 class="text-center position-relative">
+            {{ $group . ' 上傳結果' }}
+            <div class="form-check position-absolute top-50 end-0 fs-6">
+                <input class="form-check-input" type="checkbox" value="" id="pause-refresh">
+                <label class="form-check-label" for="pause-refresh">
+                    暫停畫面重整
+                </label>
+            </div></h1>
 
         <div class="mt-3 row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
             @foreach($players as $player)
@@ -32,13 +39,22 @@
                 </div>
             @endforeach
         </div>
-
-
     </div>
 @endsection
 
 @section('script')
     <script>
-        setTimeout(() => location.reload(), 30 * 1000)
+        const pause = document.getElementById('pause-refresh');
+        const intervalSec = 5; // 頁面重整間隔秒數
+
+        setTimeout(refresh, intervalSec * 1000);
+
+        function refresh() {
+            if (pause.checked) {
+                setTimeout(refresh, intervalSec * 1000)
+            } else {
+                location.reload()
+            }
+        }
     </script>
 @endsection

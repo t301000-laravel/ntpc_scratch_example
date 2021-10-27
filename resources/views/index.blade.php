@@ -7,27 +7,40 @@
         <div class="row mt-5 py-5 align-items-end  row-cols-1 row-cols-md-4 g-4">
             <div class="col text-center">
                 <a href="{{ route('dashboard', '國小遊戲組') }}">
-                    <img src="{{ asset('img/em.jpg') }}" class="img-fluid">
+                    <img src="{{ asset('img/em.jpg') }}" class="img-fluid game-img">
                 </a>
             </div>
 
             <div class="col text-center">
                 <a href="{{ route('dashboard', '國小動畫組') }}">
-                    <img src="{{ asset('img/ep.jpg') }}" class="img-fluid">
+                    <img src="{{ asset('img/ep.jpg') }}" class="img-fluid game-img">
                 </a>
             </div>
 
             <div class="col text-center">
                 <a href="{{ route('dashboard', '國中遊戲組') }}">
-                    <img src="{{ asset('img/jp.jpg') }}" class="img-fluid">
+                    <img src="{{ asset('img/jp.jpg') }}" class="img-fluid game-img">
                 </a>
             </div>
 
             <div class="col text-center">
                 <a href="{{ route('dashboard', '國中動畫組') }}">
-                    <img src="{{ asset('img/jm.jpg') }}" class="img-fluid">
+                    <img src="{{ asset('img/jm.jpg') }}" class="img-fluid game-img">
                 </a>
             </div>
         </div>
     </div>
+@endsection
+
+@section('style')
+    <style>
+        .game-img {
+            transition: all 100ms;
+        }
+
+        .game-img:hover {
+            transform: scale(1.2);
+            transition: all 200ms;
+        }
+    </style>
 @endsection

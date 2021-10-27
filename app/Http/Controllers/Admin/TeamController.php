@@ -71,17 +71,6 @@ class TeamController extends Controller
             ->with('msg', "名單新增完成： {$data['game_group']} {$data['username']} {$data['school_name']}");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
     public function edit(Team $team)
     {
         return view('admin.teams.edit', ['team' => $team]);
