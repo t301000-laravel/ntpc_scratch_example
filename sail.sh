@@ -18,6 +18,18 @@ LIGHT_CYAN='\033[1;36m'
 WHITE='\033[1;37m'
 NC='\033[0m'
 
+
+# 修改 .env 資料庫資訊 for sail
+echo ""
+echo -e "${WHITE}Setup .env DB info for sail.${NC}"
+echo ""
+currentFolder=${PWD##*/}
+sed -i 's/^DB_HOST=.*/DB_HOST=mysql/' .env
+sed -i "s/^DB_DATABASE=.*/DB_DATABASE=$currentFolder/" .env
+sed -i 's/^DB_USERNAME=.*/DB_USERNAME=sail/' .env
+sed -i 's/^DB_PASSWORD=.*/DB_PASSWORD=password/' .env
+
+
 echo ""
 
 if sudo -n true 2>/dev/null; then
