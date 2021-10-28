@@ -5,6 +5,7 @@
     use App\Http\Controllers\FileDownloadController;
     use App\Http\Controllers\FileUploadController;
     use App\Http\Controllers\GameDashboardController;
+    use App\Http\Controllers\Sb3PlayerController;
     use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,5 +53,7 @@ Route::group([
     Route::view('teams/import', 'admin.teams.import')->name('teams.import');
     Route::post('teams/import', [TeamController::class, 'import']);
 });
+
+Route::get('sb3_player/{file}', Sb3PlayerController::class)->name('player');
 
 require __DIR__ . '/ntpcopenid.php';

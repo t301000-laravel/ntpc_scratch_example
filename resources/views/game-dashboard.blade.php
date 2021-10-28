@@ -29,7 +29,9 @@
                             @if(count($player->files) > 0)
                                 <p class="card-title text-success fw-bold text-center">已上傳</p>
                                 <p class="card-text">
-                                    {{ Str::replaceFirst("sb3/{$group}/", '', $player->files->first()->path) }}
+                                    <a href="{{ route('player', $player->files->first()) }}" target="_blank">
+                                        {{ Str::replaceFirst("sb3/{$group}/", '', $player->files->first()->path) }}
+                                    </a>
                                 </p>
                             @else
                                 <p class="card-title text-danger fw-bold text-center">未上傳</p>
