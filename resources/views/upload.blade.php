@@ -59,12 +59,12 @@
                     @if(count($user->files) > 0)
                         <ul class="list-group list-group-flush">
                             @foreach($user->files as $file)
-                                <li class="list-group-item border-bottom-0">
-                                    <div class="mx-2 py-2 w-50 d-inline-block">
+                                <li class="list-group-item border-bottom-0 d-flex align-items-center">
+                                    <div class="me-2 w-50">
                                         {{ Str::replaceFirst("sb3/{$user->team->game_group}/", '', $file->path) }}
-                                        {{ $file->created_at->toTimeString() }}
+                                        <span class="float-end">{{ $file->created_at->toTimeString() }}</span>
                                     </div>
-                                    <div class="d-inline-block">
+                                    <div>
                                         <a href="{{ route('download', $file) }}" class="btn btn-link">
                                             下載
                                         </a>
