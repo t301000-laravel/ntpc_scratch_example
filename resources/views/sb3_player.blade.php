@@ -41,19 +41,18 @@
         let DESIRED_USERNAME = "griffpatch", COMPAT = true, TURBO = false;
         let SRC = "file";
 
-        let data = null;
+        let projectContent = null;
         fetch(FILE)
             .then(r => r.arrayBuffer())
-            .then(b => data = b)
+            .then(b => projectContent = b)
             .then(loadProject)
             .catch((e) => console.log(e));
 
-        let t = null;
         function loadProject() {
             if (Scratch.vm === undefined) {
                 timerForDetectIfVmIsReady()
             } else {
-                Scratch.vm.loadProject(data)
+                Scratch.vm.loadProject(projectContent)
             }
         }
 
