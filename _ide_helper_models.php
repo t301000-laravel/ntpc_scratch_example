@@ -12,6 +12,23 @@
 
 namespace App\Models{
 /**
+ * App\Models\Config
+ *
+ * @property int $id
+ * @property string $name
+ * @property int $enable
+ * @method static \Illuminate\Database\Eloquent\Builder|Config newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Config newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Config query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Config whereEnable($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Config whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Config whereName($value)
+ */
+	class Config extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\File
  *
  * @property int $id
@@ -41,6 +58,7 @@ namespace App\Models{
  * @property string $game_group
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|Team newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Team newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Team query()

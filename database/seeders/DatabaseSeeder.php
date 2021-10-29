@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Config;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -24,5 +25,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt(env('DEFAULT_ADMIN_PASSWORD', '12345678')),
             'is_admin' => 1,
         ]);
+
+        Config::create(['name' => 'public_view', 'enable' => false]);
     }
 }

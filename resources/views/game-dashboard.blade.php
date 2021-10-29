@@ -1,5 +1,6 @@
 @php
-  use \Illuminate\Support\Str;
+    use \Illuminate\Support\Str;
+    use \App\Models\Config;
 @endphp
 
 @extends('layouts.app')
@@ -29,9 +30,13 @@
                             @if(count($player->files) > 0)
                                 <p class="card-title text-success fw-bold text-center">已上傳</p>
                                 <p class="card-text">
-                                    <a href="{{ route('player', $player->files->first()) }}" target="_blank">
+                                    @if(Config::whereName('public_view')->first()->enable)
+                                        <a href="{{ route('player', $player->files->first()) }}" target="_blank">
+                                            {{ Str::replaceFirst("sb3/{$group}/", '', $player->files->first()->path) }}
+                                        </a>
+                                    @else
                                         {{ Str::replaceFirst("sb3/{$group}/", '', $player->files->first()->path) }}
-                                    </a>
+                                    @endif
                                 </p>
                             @else
                                 <p class="card-title text-danger fw-bold text-center">未上傳</p>

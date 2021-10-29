@@ -31,6 +31,7 @@
                             <li><a class="dropdown-item" href="{{ route('profile') }}">帳號資訊</a></li>
                             @if(auth()->user()->is_admin)
                                 <li><a class="dropdown-item" href="{{ route('admin.teams.index') }}">名單管理</a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.system-config.index') }}">系統設定</a></li>
                             @endif
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{{ route('logout') }}">登出</a></li>

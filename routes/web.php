@@ -52,6 +52,9 @@ Route::group([
     Route::resource('teams', TeamController::class)->except(['show']);
     Route::view('teams/import', 'admin.teams.import')->name('teams.import');
     Route::post('teams/import', [TeamController::class, 'import']);
+
+    Route::view('system', 'admin.system.index')->name('system-config.index');
+    Route::get('system/update', \App\Http\Controllers\SystemConfigController::class)->name('system-config.update');
 });
 
 Route::get('sb3_player/{file}', Sb3PlayerController::class)->name('player');
