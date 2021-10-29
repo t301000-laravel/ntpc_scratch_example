@@ -30,7 +30,7 @@
                             @if(count($player->files) > 0)
                                 <p class="card-title text-success fw-bold text-center">已上傳</p>
                                 <p class="card-text">
-                                    @if(Config::whereName('public_view')->first()->enable)
+                                    @if(Config::whereName('public_view')->first()->enable || $player->id === auth()->id())
                                         <a href="{{ route('player', $player->files->first()) }}" target="_blank">
                                             {{ Str::replaceFirst("sb3/{$group}/", '', $player->files->first()->path) }}
                                         </a>

@@ -60,10 +60,18 @@
                         <ul class="list-group list-group-flush">
                             @foreach($user->files as $file)
                                 <li class="list-group-item border-bottom-0">
-                                    <a href="{{ route('download', $file->id) }}">
-                                        {{ Str::replaceFirst('sb3/', '', $file->path) }}
-                                    </a>
-                                    <span class="ms-2 text-secondary">{{ $file->created_at->toTimeString() }}</span>
+                                    <div class="mx-2 py-2 w-50 d-inline-block">
+                                        {{ Str::replaceFirst("sb3/{$user->team->game_group}/", '', $file->path) }}
+                                        {{ $file->created_at->toTimeString() }}
+                                    </div>
+                                    <div class="d-inline-block">
+                                        <a href="{{ route('download', $file) }}" class="btn btn-link">
+                                            下載
+                                        </a>
+                                        <a href="{{ route('player', $file) }}" class="btn btn-link">
+                                            觀看
+                                        </a>
+                                    </div>
                                 </li>
                             @endforeach
                         </ul>
