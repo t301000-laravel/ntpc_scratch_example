@@ -4,12 +4,8 @@
     <div class="container">
         <h4 class="text-center text-white">{{ $fileInfo['group'] }} {{ $fileInfo['filename'] }}</h4>
 
-{{--        <div>--}}
-{{--            <button type="button" class="btn btn-primary" id="btnCapture">capture</button>--}}
-{{--            <div id="imgCapture" style=""></div>--}}
-{{--        </div>--}}
-
         <div class="d-flex position-relative mx-auto" style="width: 80%;">
+{{--        <div class="d-flex position-relative mx-auto" style="width: 600px;">--}}
             <div id="w">
                 <canvas id="s"></canvas>
                 <div id="m"></div>
@@ -23,6 +19,13 @@
             <button id="stop" title="stop"></button>
             <button id="f" title="fullscreen"></button>
         </div>
+
+{{--        <div style="position: fixed; bottom: 30px; left: 30px; width: 150px;">--}}
+{{--            <button type="button" class="btn btn-primary" id="btnCapture">capture</button>--}}
+{{--            <div id="imgCapture">--}}
+{{--                <span class="text-white">擷圖中</span>--}}
+{{--            </div>--}}
+{{--        </div>--}}
     </div>
 @endsection
 
@@ -41,6 +44,8 @@
         let DESIRED_USERNAME = "griffpatch", COMPAT = true, TURBO = false;
         let SRC = "file";
 
+        const imgCapture = document.getElementById('imgCapture')
+
         let projectContent = null;
         fetch(FILE)
             .then(r => r.arrayBuffer())
@@ -52,6 +57,10 @@
             if (Scratch.vm === undefined) {
                 timerForDetectIfVmIsReady()
             } else {
+                // 透過 Scratch.vm workspaceUpdate 事件自動抓取擷圖
+                if (imgCapture !== null) {
+                    Scratch.vm.on('workspaceUpdate', captureCanvasToPng)
+                }
                 Scratch.vm.loadProject(projectContent)
             }
         }
@@ -72,6 +81,10 @@
             let imgBase64 = Scratch.renderer.canvas.toDataURL('image/png')
             console.log('0 ' + imgBase64.length)
 
+            if (imgBase64.length !== sizeToRetry) {
+                return
+            }
+
             let counter = 1
             const maxCounter = 20 // 最多重試次數
             let timer = null
@@ -83,7 +96,7 @@
                         counter++
                         if (counter === maxCounter) clearInterval(timer)
                     } else {
-                        document.getElementById('imgCapture').innerHTML = `<img src="${imgBase64}">`
+                        imgCapture.innerHTML = `<img src="${imgBase64}" class="img-fluid">`
                         clearInterval(timer)
                     }
                 }, 1000)
@@ -116,6 +129,12 @@
                     break;
                 case 500:
                     sizeToRetry = 11650
+                    break;
+                case 550:
+                    sizeToRetry = 13718
+                    break;
+                case 600:
+                    sizeToRetry = 15978
                     break;
             }
 
