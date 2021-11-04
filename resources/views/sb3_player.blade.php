@@ -4,8 +4,8 @@
     <div class="container">
         <h4 class="text-center text-white">{{ $fileInfo['group'] }} {{ $fileInfo['filename'] }}</h4>
 
-        <div class="d-flex position-relative mx-auto" style="width: 80%;">
-{{--        <div class="d-flex position-relative mx-auto" style="width: 600px;">--}}
+{{--        <div class="d-flex position-relative mx-auto" style="width: 80%;">--}}
+        <div class="d-flex position-relative mx-auto" style="width: 520px;">
             <div id="w">
                 <canvas id="s"></canvas>
                 <div id="m"></div>
@@ -20,12 +20,12 @@
             <button id="f" title="fullscreen"></button>
         </div>
 
-{{--        <div style="position: fixed; bottom: 30px; left: 30px; width: 150px;">--}}
-{{--            <button type="button" class="btn btn-primary" id="btnCapture">capture</button>--}}
-{{--            <div id="imgCapture">--}}
-{{--                <span class="text-white">擷圖中</span>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+        <div style="position: fixed; bottom: 30px; left: 30px; width: 150px;">
+            <button type="button" class="btn btn-primary" id="btnCapture">capture</button>
+            <div id="imgCapture">
+                <span class="text-white">擷圖中</span>
+            </div>
+        </div>
     </div>
 @endsection
 
@@ -77,13 +77,11 @@
         // 擷取 canvas 為 png
         function captureCanvasToPng () {
             let canvasWidth = Scratch.renderer.canvas.clientWidth;
-            let sizeToRetry = getSizeToRetry(canvasWidth);
             let imgBase64 = Scratch.renderer.canvas.toDataURL('image/png')
+            console.log('0 ' + imgBase64)
             console.log('0 ' + imgBase64.length)
 
-            if (imgBase64.length !== sizeToRetry) {
-                return
-            }
+            let base64 = imgBase64;
 
             let counter = 1
             const maxCounter = 20 // 最多重試次數
@@ -91,54 +89,20 @@
             timer = setInterval(
                 () => {
                     imgBase64 = Scratch.renderer.canvas.toDataURL('image/png')
+                    console.log(counter + ' ' + imgBase64)
                     console.log(counter + ' ' + imgBase64.length)
-                    if (imgBase64.length === sizeToRetry) {
+
+                    if (base64.length === imgBase64.length) {
                         counter++
                         if (counter === maxCounter) clearInterval(timer)
                     } else {
-                        imgCapture.innerHTML = `<img src="${imgBase64}" class="img-fluid">`
+                        const biggerBase64 = base64.length > imgBase64.length ? base64 : imgBase64
+                        console.log('Captured ' + biggerBase64)
+                        console.log('Captured ' + biggerBase64.length)
+                        imgCapture.innerHTML = `<img src="${biggerBase64}" class="img-fluid">`
                         clearInterval(timer)
                     }
                 }, 1000)
-        }
-
-        // 依照 canvas width 取得重試的 size
-        function getSizeToRetry (canvasWidth) {
-            let sizeToRetry = 0;
-            switch (canvasWidth) {
-                case 150:
-                    sizeToRetry = 1474
-                    break;
-                case 200:
-                    sizeToRetry = 2350
-                    break;
-                case 250:
-                    sizeToRetry = 3318
-                    break;
-                case 300:
-                    sizeToRetry = 4454
-                    break;
-                case 350:
-                    sizeToRetry = 6086
-                    break;
-                case 400:
-                    sizeToRetry = 7734
-                    break;
-                case 450:
-                    sizeToRetry = 9438
-                    break;
-                case 500:
-                    sizeToRetry = 11650
-                    break;
-                case 550:
-                    sizeToRetry = 13718
-                    break;
-                case 600:
-                    sizeToRetry = 15978
-                    break;
-            }
-
-            return sizeToRetry;
         }
     </script>
 @endsection
