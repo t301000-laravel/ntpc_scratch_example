@@ -4,8 +4,8 @@
     <div class="container">
         <h4 class="text-center text-white">{{ $fileInfo['group'] }} {{ $fileInfo['filename'] }}</h4>
 
-{{--        <div class="d-flex position-relative mx-auto" style="width: 80%;">--}}
-        <div class="d-flex position-relative mx-auto" style="width: 520px;">
+        <div class="d-flex position-relative mx-auto" style="width: 80%;">
+{{--        <div class="d-flex position-relative mx-auto" style="width: 520px;">--}}
             <div id="w">
                 <canvas id="s"></canvas>
                 <div id="m"></div>
