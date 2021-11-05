@@ -251,7 +251,9 @@ const runBenchmark = function () {
   */
   vm.on('workspaceUpdate', () => {
 
-    document.body.removeChild(progress);
+    if (document.getElementById('l')) {
+        document.body.removeChild(progress);
+    }
 
 
     const doNothing = () => null;
@@ -299,7 +301,9 @@ const runBenchmark = function () {
     if (AutoStart)
         vm.greenFlag();
 
-    document.body.removeChild(document.getElementById('j'));
+    if (document.getElementById('j')) {
+        document.body.removeChild(document.getElementById('j'));
+    }
   });
 
   function resize() {

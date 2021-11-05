@@ -76,7 +76,6 @@
 
         // 擷取 canvas 為 png
         function captureCanvasToPng () {
-            let canvasWidth = Scratch.renderer.canvas.clientWidth;
             let imgBase64 = Scratch.renderer.canvas.toDataURL('image/png')
             console.log('0 ' + imgBase64)
             console.log('0 ' + imgBase64.length)
@@ -94,7 +93,10 @@
 
                     if (base64.length === imgBase64.length) {
                         counter++
-                        if (counter === maxCounter) clearInterval(timer)
+                        if (counter === maxCounter) {
+                            clearInterval(timer)
+                            alert('截圖失敗，請重試')
+                        }
                     } else {
                         const biggerBase64 = base64.length > imgBase64.length ? base64 : imgBase64
                         console.log('Captured ' + biggerBase64)

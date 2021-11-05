@@ -50,6 +50,29 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\GalleryItem
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $sb3_path
+ * @property string $thumb_path
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|GalleryItem newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GalleryItem newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GalleryItem query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GalleryItem whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GalleryItem whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GalleryItem whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GalleryItem whereSb3Path($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GalleryItem whereThumbPath($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GalleryItem whereUpdatedAt($value)
+ */
+	class GalleryItem extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Team
  *
  * @property int $id
