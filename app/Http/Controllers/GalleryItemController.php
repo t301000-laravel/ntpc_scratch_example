@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Storage;
 
 class GalleryItemController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->only(['store']);
+    }
+
     public function index()
     {
         return view('gallery.index', ['items' => GalleryItem::orderByDesc('id')->get()]);
@@ -20,11 +25,6 @@ class GalleryItemController extends Controller
 
     public function store(Request $request)
     {
-        // 暫時擋一下
-        if (!auth()->user()) {
-            return back();
-        }
-
         $data = $request->validate([
             'name' => ['required'],
             'myfile' => ['file'],
