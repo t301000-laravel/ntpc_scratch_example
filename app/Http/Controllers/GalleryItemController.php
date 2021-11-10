@@ -50,4 +50,16 @@ class GalleryItemController extends Controller
 
         return redirect()->route('gallery.index');
     }
+
+    public function show(Request $request, GalleryItem $gallery)
+    {
+        abort_if(Storage::missing($gallery->sb3_path), 404);
+
+        $base64 = base64_encode(Storage::get($gallery->sb3_path));
+
+        return view('gallery.show', [
+            'title' => $gallery->name,
+            'base64' => $base64,
+        ]);
+    }
 }
