@@ -1,26 +1,36 @@
-@extends('layouts.player')
+@extends('layouts.app')
+
+@section('title', 'Gallery')
 
 @section('content')
     <div class="container">
-        <h4 class="text-center text-white">新增</h4>
+        <h1>Gallery 新增項目</h1>
 
-        <div class="row mt-5">
-            <div class="col">
-                <form action="{{ route('gallery.store') }}" method="post" enctype="multipart/form-data" id="upload-form">
-                    @csrf
+        <form action="{{ route('gallery.store') }}" method="post" enctype="multipart/form-data" id="upload-form">
+            <div class="row mt-5">
+                <div class="col col-md-5">
                     <div class="mb-3">
-                        <label for="formFile" class="form-label">選擇要上傳的作品檔案</label>
+                        <label for="name" class="form-label fw-bold">作品名稱</label>
+                        <input class="form-control" type="text" name="name" id="name" required>
+                    </div>
+                </div>
+
+                <div class="col col-md-5">
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label fw-bold">選擇要上傳的作品檔案</label>
                         <input class="form-control" type="file" name="myfile" id="formFile" accept=".sb3" required>
                     </div>
+                </div>
 
-                    <input type="hidden" name="img_base64" id="img-base64" value="">
-
-                    <div class="float-end">
+                <div class="col col-md-2 d-flex align-items-end justify-content-end">
+                    <div class="mb-3">
+                        @csrf
+                        <input type="hidden" name="img_base64" id="img-base64" value="">
                         <button type="submit" class="btn btn-primary px-5 btn-lg" id="btn-submit">上傳</button>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
+        </form>
 
         <div class="row mt-3 g-5">
             <div class="col text-center">

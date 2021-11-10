@@ -26,6 +26,7 @@ class GalleryItemController extends Controller
         }
 
         $data = $request->validate([
+            'name' => ['required'],
             'myfile' => ['file'],
             'img_base64' => ['required']
         ]);
@@ -42,7 +43,7 @@ class GalleryItemController extends Controller
         Storage::put($thumbStoredPath, base64_decode($file_data));
 
         GalleryItem::create([
-            'name' => $filename,
+            'name' => $request->get('name'),
             'sb3_path' => $path,
             'thumb_path' => $thumbUrl
         ]);

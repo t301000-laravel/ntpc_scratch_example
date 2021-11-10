@@ -15,6 +15,9 @@
                 <li class="nav-item">
                     <a class="nav-link {{ Request::routeIs('upload') ? 'active fw-bold' : '' }}" href="{{ route('upload') }}">作品上傳</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::segment(1) === 'gallery' ? 'active fw-bold' : '' }}" href="{{ route('gallery.index') }}">Gallery</a>
+                </li>
             </ul>
             <ul class="navbar-nav mb-2 mb-md-0">
                 @guest()
