@@ -12,8 +12,8 @@
             </div>
         @enderror
 
-        <div class="row row-cols-1 row-cols-md-2 g-4">
-            <div class="col order-1 order-md-0">
+        <div class="row flex-column-reverse flex-md-row g-4">
+            <div class="col">
                 <div class="card h-100">
                     <div class="card-header text-center">
                         <h4>登入</h4>
