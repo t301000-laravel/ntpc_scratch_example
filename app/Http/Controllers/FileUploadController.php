@@ -2,17 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Config;
 use App\Models\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class FileUploadController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $user = auth()->user()->load(['team', 'files']);
+
+        if ($user->team) {
+            $can_upload = $this->canUpload($user->team->game_group);
+
+            // 不允許上傳時則強制登出
+            if (!$can_upload) {
+                Auth::logout();
+                $request->session()->invalidate();
+
+                return redirect('/');
+            }
+        }
+
         return view('upload', [
-            'user' => auth()->user()->load(['team', 'files'])
+            'user' => $user
         ]);
     }
 
@@ -62,5 +78,25 @@ class FileUploadController extends Controller
         ];
 
         return back()->with('status', $msg);
+    }
+
+    private function canUpload($game_group)
+    {
+        switch ($game_group) {
+            case '國小遊戲組':
+                $config_name = 'eg_upload';
+                break;
+            case '國小動畫組':
+                $config_name = 'ea_upload';
+                break;
+            case '國中遊戲組':
+                $config_name = 'jg_upload';
+                break;
+            case '國中動畫組':
+                $config_name = 'ja_upload';
+                break;
+        }
+
+        return Config::whereName($config_name)->first()->enable;
     }
 }

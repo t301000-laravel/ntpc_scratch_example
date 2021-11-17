@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Config;
-use App\Models\Team;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -26,6 +25,10 @@ class DatabaseSeeder extends Seeder
             'is_admin' => 1,
         ]);
 
-        Config::create(['name' => 'public_view', 'enable' => false]);
+        Config::create(['name' => 'public_view', 'enable' => false]); // 開放觀摩
+        Config::create(['name' => 'eg_upload', 'enable' => false]); // 國小遊戲組可上傳
+        Config::create(['name' => 'ea_upload', 'enable' => false]); // 國小動畫組可上傳
+        Config::create(['name' => 'jg_upload', 'enable' => false]); // 國中遊戲組可上傳
+        Config::create(['name' => 'ja_upload', 'enable' => false]); // 國中動畫組可上傳
     }
 }
